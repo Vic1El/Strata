@@ -2,17 +2,17 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main, mainented, labeled, assigned, auto_merged" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main, pull-request" ]
 
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: linux-xarm92
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
